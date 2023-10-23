@@ -1,6 +1,6 @@
 const {Schema, model} = require('mongoose')
 const Joi = require("joi");
-const {handleMongooseError} = require('../helpers')
+const { handleMongooseError } = require('../helpers')
 
 const emailRegexp = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/ 
 
@@ -23,9 +23,13 @@ const userSchema = new Schema({
         enum: ["starter", "pro", "business"],
         default: "starter"
       },
-      token: String
+      token: String,
+      avatarURL: {
+        type: String,
+        required: true,
+      }      
 
-}, {versionKey: false, timestamps: true})
+}, { versionKey: false, timestamps: true })
 
 userSchema.post('save', handleMongooseError)
 
